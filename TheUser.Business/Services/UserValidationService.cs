@@ -1,24 +1,39 @@
 ﻿using TheUser.Business.Interfaces;
 using System.Net.Mail;
 using System;
+using System.Linq;
 
 namespace TheUser.Business.Services
 {
     public class UserValidationService : IUserValidationService
     {
+        private IUserRepository _userRepository { get; set; }
+        public UserValidationService(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
         public bool Validate(IUser user)
         {
-            if (!ValidateEmail(user))
+            bool emailValid = ValidateEmail(user);
+            bool lastNameValid = ValidateLastName(user);
+
+            if (!emailValid || !lastNameValid)
             {
                 return false;
             }
             return true;
         }
+
         public bool ValidateEmail(IUser user)
         {
+            if (_userRepository.GetAll().Where(u => u.Email.Equals(user.Email)).Any())
+            {
+                return false;
+            }
+
             try
             {
-                MailAddress m = new MailAddress(user.Email);
+                MailAddress m = new(user.Email);
                 return true;
             }
             catch (FormatException)
@@ -29,6 +44,15 @@ namespace TheUser.Business.Services
             {
                 return false;
             }
+        }
+
+        public bool ValidateLastName(IUser user)
+        {
+            if (string.IsNullOrWhiteSpace(user.LastName))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
