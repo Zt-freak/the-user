@@ -34,7 +34,11 @@ namespace TheUser.Business.Services
             try
             {
                 MailAddress m = new(user.Email);
-                return true;
+                if (!string.IsNullOrWhiteSpace(m.Address))
+                {
+                    return true;
+                }
+                return false;
             }
             catch (FormatException)
             {
