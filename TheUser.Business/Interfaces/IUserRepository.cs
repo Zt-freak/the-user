@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace TheUser.Business.Interfaces
 {
-    public interface IRepository
+    public interface IUserRepository
     {
-
+        IEnumerable<IUser> GetAll();
+        void Add(IUser user);
+        void Update(IUser user);
+        void Delete(int userId);
     }
 }
