@@ -7,7 +7,7 @@ namespace TheUser.Business.Services
 {
     public class UserValidationService : IUserValidationService
     {
-        private IUserRepository _userRepository { get; set; }
+        private readonly IUserRepository _userRepository;
         public UserValidationService(IUserRepository userRepository)
         {
             _userRepository = userRepository;

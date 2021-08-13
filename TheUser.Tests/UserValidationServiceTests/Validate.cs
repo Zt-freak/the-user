@@ -39,6 +39,7 @@ namespace TheUser.Tests.UserValidationServiceTests
         [InlineData("test")]
         [InlineData("1")]
         [InlineData("@.com")]
+        [InlineData("test@.com")]
         [InlineData("")]
         public void ItShouldRejectInvalidEmails(string notAnEmail)
         {
