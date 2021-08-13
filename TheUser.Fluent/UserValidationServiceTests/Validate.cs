@@ -52,7 +52,7 @@ namespace TheUser.Tests.UserValidationServiceTests
             bool result = _userValidationService.ValidateEmail(mockUser.Object);
 
             // Assert
-            result.Should().Be(false);;
+            result.Should().Be(false);
         }
 
         [Theory]
