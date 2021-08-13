@@ -1,4 +1,5 @@
 ﻿using Xunit;
+using FluentAssertions;
 using Moq;
 using TheUser.Business.Interfaces;
 using TheUser.Business.Services;
@@ -31,7 +32,7 @@ namespace TheUser.Tests.UserValidationServiceTests
             bool result = _userValidationService.ValidateEmail(mockUser.Object);
 
             // Assert
-            Assert.True(result);
+            result.Should().Be(true);
         }
 
         [Theory]
@@ -51,7 +52,7 @@ namespace TheUser.Tests.UserValidationServiceTests
             bool result = _userValidationService.ValidateEmail(mockUser.Object);
 
             // Assert
-            Assert.False(result);
+            result.Should().Be(false);
         }
 
         [Theory]
@@ -67,7 +68,7 @@ namespace TheUser.Tests.UserValidationServiceTests
             bool result = _userValidationService.ValidateLastName(mockUser.Object);
 
             // Assert
-            Assert.True(result);
+            result.Should().Be(true);
         }
 
         [Theory]
@@ -84,7 +85,7 @@ namespace TheUser.Tests.UserValidationServiceTests
             bool result = _userValidationService.ValidateLastName(mockUser.Object);
 
             // Assert
-            Assert.False(result);
+            result.Should().Be(false);
         }
 
         [Fact]
@@ -105,7 +106,7 @@ namespace TheUser.Tests.UserValidationServiceTests
             bool result = _userValidationService.ValidateEmail(mockUser.Object);
 
             // Assert
-            Assert.False(result);
+            result.Should().Be(false);
         }
 
         [Fact]
@@ -119,7 +120,7 @@ namespace TheUser.Tests.UserValidationServiceTests
             bool result = _userValidationService.Validate(mockUser.Object);
 
             // Assert
-            Assert.False(result);
+            result.Should().Be(false);
         }
 
         [Fact]
@@ -133,7 +134,7 @@ namespace TheUser.Tests.UserValidationServiceTests
             bool result = _userValidationService.Validate(mockUser.Object);
 
             // Assert
-            Assert.False(result);
+            result.Should().Be(false);
         }
     }
 }
