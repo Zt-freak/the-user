@@ -95,9 +95,9 @@ namespace TheUser.Tests.UserValidationServiceTests
             mockUser.SetupGet(x => x.Email).Returns("duplicate@example.com");
 
             _userRepository.Setup(x => x.GetAll()).Returns(
-                new List<IUser>()
+                new List<IUser>
                 {
-                    new User() { Email = "duplicate@example.com" }
+                    new User { Email = "duplicate@example.com" }
                 }
             );
 
@@ -107,7 +107,6 @@ namespace TheUser.Tests.UserValidationServiceTests
             // Assert
             Assert.False(result);
         }
-
 
         [Fact]
         public void ItShouldMarkUsersWithoutLastNameInvalid()
